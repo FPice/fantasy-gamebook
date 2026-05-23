@@ -1,6 +1,6 @@
-import { useTranslations } from "next-intl";
-import { createServerSupabaseClient } from "@/lib/supabase";
 import { redirect } from "next/navigation";
+import { createServerSupabaseClient } from "@/lib/supabase";
+import { ProfileClient } from "./ProfileClient";
 import type { Locale } from "@/i18n";
 
 export default async function ProfilePage({
@@ -9,29 +9,29 @@ export default async function ProfilePage({
   params: { locale: Locale };
 }) {
   const supabase = await createServerSupabaseClient();
-  const { data: { session } } = await supabase.auth.getSession();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  if (!session) redirect(`/${locale}/auth`);
+  if (!user) redirect(`/${locale}/auth`);
 
   const { data: profile } = await supabase
     .from("profiles")
     .select("*")
-    .eq("id", session.user.id)
+    .eq("id", user.id)
     .single();
 
-  return <ProfileView profile={profile} />;
-}
-
-function ProfileView({ profile }: { profile: unknown }) {
-  const t = useTranslations("profile");
+  const { data: characters } = await supabase
+    .from("characters")
+    .select("*")
+    .eq("user_id", user.id);
 
   return (
-    <div className="container max-w-3xl py-12">
-      <h1 className="text-3xl font-bold mb-8 text-gradient-abyss">{t("title")}</h1>
-
-      <div className="border border-abyss-800 rounded-lg p-6 bg-card">
-        <p className="text-muted-foreground text-sm">{t("noSaves")}</p>
-      </div>
-    </div>
+    <ProfileClient
+      locale={locale}
+      email={user.email ?? ""}
+      profile={profile}
+      characters={characters ?? []}
+    />
   );
 }

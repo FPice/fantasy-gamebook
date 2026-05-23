@@ -349,3 +349,47 @@ CREATE POLICY "Utenti aggiornano le proprie sessioni"
 CREATE TRIGGER update_game_sessions_updated_at
   BEFORE UPDATE ON game_sessions
   FOR EACH ROW EXECUTE FUNCTION update_updated_at();
+
+-- ─── Migration: Profilo esteso (consensi GDPR e dati anagrafici) ──────────────
+
+ALTER TABLE profiles
+  ADD COLUMN IF NOT EXISTS nome                TEXT        NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS cognome             TEXT        NOT NULL DEFAULT '',
+  ADD COLUMN IF NOT EXISTS nickname_battaglia  TEXT        UNIQUE,
+  ADD COLUMN IF NOT EXISTS consenso_gdpr       BOOLEAN     NOT NULL DEFAULT false,
+  ADD COLUMN IF NOT EXISTS consenso_gdpr_at    TIMESTAMPTZ,
+  ADD COLUMN IF NOT EXISTS marketing_opt_in    BOOLEAN     NOT NULL DEFAULT false,
+  ADD COLUMN IF NOT EXISTS marketing_opt_in_at TIMESTAMPTZ;
+
+-- Aggiorna il trigger di creazione profilo per gestire i nuovi campi
+CREATE OR REPLACE FUNCTION handle_new_user()
+RETURNS TRIGGER AS $$
+BEGIN
+  INSERT INTO profiles (
+    id, username, nome, cognome, nickname_battaglia,
+    consenso_gdpr, consenso_gdpr_at,
+    marketing_opt_in, marketing_opt_in_at
+  )
+  VALUES (
+    NEW.id,
+    COALESCE(
+      NEW.raw_user_meta_data->>'nickname_battaglia',
+      split_part(NEW.email, '@', 1)
+    ),
+    COALESCE(NEW.raw_user_meta_data->>'nome', ''),
+    COALESCE(NEW.raw_user_meta_data->>'cognome', ''),
+    NEW.raw_user_meta_data->>'nickname_battaglia',
+    COALESCE((NEW.raw_user_meta_data->>'consenso_gdpr')::boolean, false),
+    CASE
+      WHEN (NEW.raw_user_meta_data->>'consenso_gdpr')::boolean
+      THEN NOW() ELSE NULL
+    END,
+    COALESCE((NEW.raw_user_meta_data->>'marketing_opt_in')::boolean, false),
+    CASE
+      WHEN (NEW.raw_user_meta_data->>'marketing_opt_in')::boolean
+      THEN NOW() ELSE NULL
+    END
+  );
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;

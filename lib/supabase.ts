@@ -16,9 +16,39 @@ export type Database = {
   public: {
     Tables: {
       profiles: {
-        Row: { id: string; username: string; created_at: string };
-        Insert: { id: string; username: string };
-        Update: { username?: string };
+        Row: {
+          id: string;
+          username: string;
+          nome: string;
+          cognome: string;
+          nickname_battaglia: string | null;
+          consenso_gdpr: boolean;
+          consenso_gdpr_at: string | null;
+          marketing_opt_in: boolean;
+          marketing_opt_in_at: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id: string;
+          username: string;
+          nome?: string;
+          cognome?: string;
+          nickname_battaglia?: string | null;
+          consenso_gdpr?: boolean;
+          consenso_gdpr_at?: string | null;
+          marketing_opt_in?: boolean;
+          marketing_opt_in_at?: string | null;
+        };
+        Update: {
+          username?: string;
+          nome?: string;
+          cognome?: string;
+          nickname_battaglia?: string | null;
+          consenso_gdpr?: boolean;
+          consenso_gdpr_at?: string | null;
+          marketing_opt_in?: boolean;
+          marketing_opt_in_at?: string | null;
+        };
       };
       characters: {
         Row: Omit<Personaggio, "equipaggiamento" | "inventario"> & {
