@@ -1,346 +1,180 @@
-// ─── Enumerations ────────────────────────────────────────────────────────────
+// ─── Tipi Primitivi ──────────────────────────────────────────────────────────
 
-export type Locale = "it" | "en";
+export type Rarità = "comune" | "non_comune" | "raro" | "leggendario";
 
-export type CharacterClass =
-  | "warrior"
-  | "mage"
-  | "rogue"
-  | "cleric"
-  | "ranger";
+export type SlotEquipaggiamento =
+  | "arma"
+  | "testa"
+  | "corpo"
+  | "gambe"
+  | "anello"
+  | "amuleto";
 
-export type AbilityScore =
-  | "strength"
-  | "dexterity"
-  | "constitution"
-  | "intelligence"
-  | "wisdom"
-  | "charisma";
+export type TipoNodo =
+  | "storia"
+  | "combattimento"
+  | "tesoro"
+  | "morte"
+  | "vittoria";
 
-export type EquipmentSlot =
-  | "head"
-  | "chest"
-  | "hands"
-  | "legs"
-  | "feet"
-  | "mainHand"
-  | "offHand"
-  | "neck"
-  | "ring1"
-  | "ring2";
+export type NomeSet =
+  | "corona_alba_eterna"
+  | "velo_ombre_eterne"
+  | "patto_drago_primordiale";
 
-export type ItemRarity = "common" | "uncommon" | "rare" | "epic" | "legendary";
+export type ProbabilitàLoot = "comune_non_comune" | "raro_leggendario" | "niente";
 
-export type ItemType =
-  | "weapon"
-  | "armor"
-  | "consumable"
-  | "key"
-  | "quest"
-  | "misc";
+export type TipoEffetto = "passivo" | "attivo" | "trigger";
 
-export type DamageType =
-  | "physical"
-  | "fire"
-  | "ice"
-  | "lightning"
-  | "poison"
-  | "necrotic"
-  | "holy";
+// ─── Oggetti ──────────────────────────────────────────────────────────────────
 
-export type StatusEffect =
-  | "poisoned"
-  | "stunned"
-  | "burning"
-  | "frozen"
-  | "blessed"
-  | "cursed"
-  | "regenerating";
-
-export type ChoiceOutcomeType =
-  | "navigate"
-  | "combat"
-  | "check"
-  | "loot"
-  | "event";
-
-export type GameSessionStatus = "active" | "completed" | "abandoned";
-
-export type SaveSlot = 1 | 2 | 3;
-
-// ─── Localised Content ───────────────────────────────────────────────────────
-
-export interface LocalisedText {
-  it: string;
-  en: string;
+export interface BonusStats {
+  attacco?: number;
+  difesa?: number;
+  punti_vita_max?: number;
 }
 
-// ─── Stats & Abilities ───────────────────────────────────────────────────────
-
-export interface AbilityScores {
-  strength: number;
-  dexterity: number;
-  constitution: number;
-  intelligence: number;
-  wisdom: number;
-  charisma: number;
+export interface EffettoSpeciale {
+  nome: string;
+  descrizione: string;
+  tipo: TipoEffetto;
+  chiave: string;
+  valore?: number;
 }
 
-export interface DerivedStats {
-  maxHp: number;
-  currentHp: number;
-  maxMp: number;
-  currentMp: number;
-  attackBonus: number;
-  defenseBonus: number;
-  initiative: number;
-  speed: number;
-}
-
-export interface StatusEffectInstance {
-  effect: StatusEffect;
-  duration: number;
-  magnitude: number;
-  sourceId?: string;
-}
-
-// ─── Items & Inventory ───────────────────────────────────────────────────────
-
-export interface ItemStats {
-  damage?: number;
-  damageType?: DamageType;
-  defense?: number;
-  bonuses?: Partial<AbilityScores & DerivedStats>;
-}
-
-export interface Item {
+export interface Oggetto {
   id: string;
-  name: LocalisedText;
-  description: LocalisedText;
-  type: ItemType;
-  rarity: ItemRarity;
-  slot?: EquipmentSlot;
-  stats?: ItemStats;
-  value: number;
-  weight: number;
-  stackable: boolean;
-  maxStack?: number;
-  iconUrl?: string;
+  nome: string;
+  descrizione: string;
+  rarità: Rarità;
+  slot: SlotEquipaggiamento;
+  bonus: BonusStats;
+  effetto_speciale?: EffettoSpeciale;
+  nome_set?: NomeSet;
 }
 
-export interface InventoryEntry {
-  item: Item;
-  quantity: number;
+export type Equipaggiamento = Partial<Record<SlotEquipaggiamento, Oggetto>>;
+
+// ─── Set Leggendari ───────────────────────────────────────────────────────────
+
+export interface BonusSetLivello {
+  stats: BonusStats;
+  descrizione: string;
+  effetto_speciale?: EffettoSpeciale;
 }
 
-export interface Equipment {
-  head?: Item;
-  chest?: Item;
-  hands?: Item;
-  legs?: Item;
-  feet?: Item;
-  mainHand?: Item;
-  offHand?: Item;
-  neck?: Item;
-  ring1?: Item;
-  ring2?: Item;
+export interface SetLeggendario {
+  nome_set: NomeSet;
+  nome: string;
+  bonus_2_pezzi: BonusSetLivello;
+  bonus_3_pezzi: BonusSetLivello;
+  bonus_4_pezzi: BonusSetLivello;
 }
 
-// ─── Character ───────────────────────────────────────────────────────────────
+export interface SetAttivo {
+  nome_set: NomeSet;
+  pezzi: number;
+  bonus_applicati: BonusSetLivello[];
+}
 
-export interface Character {
+// ─── Personaggio ─────────────────────────────────────────────────────────────
+
+export interface StatBase {
+  attacco: number;
+  difesa: number;
+  punti_vita_max: number;
+  punti_vita_correnti: number;
+  oro: number;
+}
+
+export interface Personaggio {
   id: string;
-  userId: string;
-  name: string;
-  class: CharacterClass;
-  level: number;
-  experience: number;
-  experienceToNextLevel: number;
-  abilityScores: AbilityScores;
-  derivedStats: DerivedStats;
-  equipment: Equipment;
-  inventory: InventoryEntry[];
-  gold: number;
-  statusEffects: StatusEffectInstance[];
-  skills: string[];
-  knownSpells: string[];
-  createdAt: string;
-  updatedAt: string;
+  user_id: string;
+  nome: string;
+  stats: StatBase;
+  equipaggiamento: Equipaggiamento;
+  inventario: Oggetto[];
 }
 
-// ─── Narrative & Sections ────────────────────────────────────────────────────
-
-export interface DiceCheck {
-  ability: AbilityScore;
-  difficulty: number;
-  successOutcome: string;
-  failureOutcome: string;
+export interface StatCalcolate extends StatBase {
+  effetti_attivi: EffettoSpeciale[];
+  set_attivi: SetAttivo[];
 }
 
-export interface CombatEncounter {
-  enemyIds: string[];
-  victorySection: string;
-  defeatSection: string;
-  fleeSection?: string;
-}
+// ─── Nemici ───────────────────────────────────────────────────────────────────
 
-export interface LootTable {
-  items: Array<{ itemId: string; chance: number; quantity: [number, number] }>;
-  gold?: [number, number];
-}
-
-export interface ChoiceRequirement {
-  type: "item" | "ability" | "stat" | "flag";
-  value: string;
-  threshold?: number;
-}
-
-export interface Choice {
+export interface Nemico {
   id: string;
-  text: LocalisedText;
-  targetSection: string;
-  outcomeType: ChoiceOutcomeType;
-  requirements?: ChoiceRequirement[];
-  diceCheck?: DiceCheck;
-  combat?: CombatEncounter;
-  loot?: LootTable;
-  hidden?: boolean;
+  nome: string;
+  attacco: number;
+  difesa: number;
+  punti_vita: number;
+  oro_min: number;
+  oro_max: number;
+  loot_possibile: Oggetto[];
 }
 
-export interface GameSection {
+// ─── Combattimento ───────────────────────────────────────────────────────────
+
+export interface TurnoCombattimento {
+  numero: number;
+  danno_giocatore: number;
+  danno_nemico: number;
+  hp_giocatore_dopo: number;
+  hp_nemico_dopo: number;
+  critico_giocatore: boolean;
+  critico_nemico: boolean;
+  rigenerazione_applicata?: number;
+  schivata_giocatore?: boolean;
+  soffio_drago?: boolean;
+  furia_draconica?: boolean;
+}
+
+export interface RisultatoCombattimento {
+  vittoria: boolean;
+  turni: TurnoCombattimento[];
+  loot?: Oggetto;
+  oro_guadagnato?: number;
+  hp_finale_giocatore: number;
+}
+
+// ─── Storia ───────────────────────────────────────────────────────────────────
+
+export interface SceltaNodo {
   id: string;
-  title: LocalisedText;
-  body: LocalisedText;
-  imageUrl?: string;
-  choices: Choice[];
-  isEnding?: boolean;
-  endingType?: "victory" | "defeat" | "neutral";
-  onEnterFlags?: string[];
-  onEnterItems?: string[];
-  musicTrack?: string;
-  ambientSound?: string;
+  nodo_id: string;
+  testo_it: string;
+  testo_en: string;
+  nodo_successivo_id: string;
+  ordine: number;
+  condizione?: string;
 }
 
-// ─── Enemies ─────────────────────────────────────────────────────────────────
-
-export interface Enemy {
+export interface NodoStoria {
   id: string;
-  name: LocalisedText;
-  description: LocalisedText;
-  level: number;
-  hp: number;
-  mp: number;
-  abilityScores: AbilityScores;
-  attacks: Array<{
-    name: LocalisedText;
-    damage: [number, number];
-    damageType: DamageType;
-    accuracy: number;
-  }>;
-  loot?: LootTable;
-  experience: number;
-  imageUrl?: string;
-  isBoss?: boolean;
+  testo_it: string;
+  testo_en: string;
+  tipo: TipoNodo;
+  probabilità_loot: ProbabilitàLoot;
+  scelte: SceltaNodo[];
 }
 
-// ─── Combat ──────────────────────────────────────────────────────────────────
+// ─── Sessione di Gioco ────────────────────────────────────────────────────────
 
-export interface CombatantState {
+export interface SessioneGioco {
   id: string;
-  name: string;
-  currentHp: number;
-  maxHp: number;
-  currentMp: number;
-  maxMp: number;
-  statusEffects: StatusEffectInstance[];
-  initiative: number;
+  user_id: string;
+  character_id: string;
+  nodo_corrente_id: string;
+  completata: boolean;
+  vittoria?: boolean;
+  created_at: string;
+  updated_at: string;
 }
 
-export interface CombatLog {
-  round: number;
-  actorId: string;
-  action: string;
-  result: string;
-  damage?: number;
-  isCritical?: boolean;
-}
+// ─── Loot ─────────────────────────────────────────────────────────────────────
 
-export interface CombatState {
-  isActive: boolean;
-  round: number;
-  turnOrder: string[];
-  currentTurnIndex: number;
-  playerState: CombatantState;
-  enemies: CombatantState[];
-  log: CombatLog[];
-  outcome?: "victory" | "defeat" | "fled";
-}
-
-// ─── Game Session ─────────────────────────────────────────────────────────────
-
-export interface GameFlags {
-  [flagName: string]: boolean | number | string;
-}
-
-export interface GameSession {
-  id: string;
-  userId: string;
-  characterId: string;
-  saveSlot: SaveSlot;
-  currentSectionId: string;
-  visitedSections: string[];
-  flags: GameFlags;
-  playtime: number;
-  status: GameSessionStatus;
-  combat?: CombatState;
-  createdAt: string;
-  updatedAt: string;
-}
-
-// ─── User Profile ─────────────────────────────────────────────────────────────
-
-export interface UserProfile {
-  id: string;
-  username: string;
-  avatarUrl?: string;
-  preferredLocale: Locale;
-  totalPlaytime: number;
-  achievements: string[];
-  isDonor: boolean;
-  donorTier?: "supporter" | "champion" | "legend";
-  createdAt: string;
-}
-
-// ─── Game Engine Types ────────────────────────────────────────────────────────
-
-export interface DiceRoll {
-  sides: number;
-  count: number;
-  modifier: number;
-  result: number;
-  rolls: number[];
-}
-
-export interface CheckResult {
-  roll: DiceRoll;
-  total: number;
-  difficulty: number;
-  success: boolean;
-  margin: number;
-}
-
-export interface NavigationResult {
-  success: boolean;
-  section?: GameSection;
-  error?: string;
-}
-
-export interface ActionResult {
-  type: ChoiceOutcomeType;
-  navigateTo?: string;
-  combat?: CombatState;
-  checkResult?: CheckResult;
-  loot?: InventoryEntry[];
-  flagsSet?: GameFlags;
-  message?: LocalisedText;
+export interface RisultatoLoot {
+  oggetto?: Oggetto;
+  tipo_estratto: ProbabilitàLoot;
 }
