@@ -1,0 +1,148 @@
+{
+  "common": {
+    "appName": "Cronache dell'Abisso",
+    "tagline": "Un'avventura nell'oscurità ti attende",
+    "loading": "Caricamento...",
+    "error": "Si è verificato un errore",
+    "retry": "Riprova",
+    "back": "Indietro",
+    "continue": "Continua",
+    "cancel": "Annulla",
+    "save": "Salva",
+    "delete": "Elimina",
+    "confirm": "Conferma",
+    "close": "Chiudi",
+    "yes": "Sì",
+    "no": "No"
+  },
+  "nav": {
+    "home": "Home",
+    "play": "Gioca",
+    "profile": "Profilo",
+    "donate": "Supporta",
+    "signIn": "Accedi",
+    "signOut": "Esci"
+  },
+  "home": {
+    "heroTitle": "Cronache dell'Abisso",
+    "heroSubtitle": "Un libro game fantasy epico",
+    "heroDescription": "Parti alla scoperta dell'Abisso, un reame di oscurità e meraviglia. Le tue scelte plasmano il destino.",
+    "startAdventure": "Inizia l'Avventura",
+    "continueAdventure": "Continua l'Avventura",
+    "features": {
+      "choices": "Scelte Significative",
+      "choicesDesc": "Ogni decisione ha conseguenze reali e durature.",
+      "combat": "Combattimento Tattico",
+      "combatDesc": "Sistema di combattimento basato su dadi con statistiche.",
+      "story": "Storia Ramificata",
+      "storyDesc": "Centinaia di sezioni narrative per un'esperienza unica."
+    }
+  },
+  "auth": {
+    "signIn": "Accedi",
+    "signUp": "Registrati",
+    "signOut": "Esci",
+    "email": "Email",
+    "password": "Password",
+    "username": "Nome utente",
+    "forgotPassword": "Password dimenticata?",
+    "noAccount": "Non hai un account?",
+    "alreadyHaveAccount": "Hai già un account?",
+    "signInWithGoogle": "Accedi con Google",
+    "emailSent": "Email di conferma inviata. Controlla la tua casella.",
+    "invalidCredentials": "Credenziali non valide. Riprova.",
+    "errors": {
+      "emailRequired": "L'email è obbligatoria",
+      "passwordRequired": "La password è obbligatoria",
+      "usernameRequired": "Il nome utente è obbligatorio",
+      "passwordMinLength": "La password deve avere almeno 8 caratteri"
+    }
+  },
+  "profile": {
+    "title": "Profilo",
+    "level": "Livello",
+    "class": "Classe",
+    "experience": "Esperienza",
+    "totalPlaytime": "Tempo di gioco totale",
+    "achievements": "Obiettivi",
+    "noAchievements": "Nessun obiettivo sbloccato ancora.",
+    "characters": "I tuoi Personaggi",
+    "createCharacter": "Crea Personaggio",
+    "saves": "Partite Salvate",
+    "noSaves": "Nessuna partita salvata.",
+    "donorBadge": "Sostenitore",
+    "stats": {
+      "strength": "Forza",
+      "dexterity": "Destrezza",
+      "constitution": "Costituzione",
+      "intelligence": "Intelligenza",
+      "wisdom": "Saggezza",
+      "charisma": "Carisma"
+    },
+    "classes": {
+      "warrior": "Guerriero",
+      "mage": "Mago",
+      "rogue": "Ladro",
+      "cleric": "Chierico",
+      "ranger": "Ranger"
+    }
+  },
+  "game": {
+    "newGame": "Nuova Partita",
+    "loadGame": "Carica Partita",
+    "saveGame": "Salva Partita",
+    "saveSlot": "Slot {slot}",
+    "emptySlot": "Slot vuoto",
+    "confirmOverwrite": "Vuoi sovrascrivere questo salvataggio?",
+    "chooseAction": "Cosa fai?",
+    "inventory": "Inventario",
+    "equipment": "Equipaggiamento",
+    "skills": "Abilità",
+    "stats": "Statistiche",
+    "gold": "Oro",
+    "hp": "PF",
+    "mp": "PM",
+    "combat": {
+      "title": "Combattimento",
+      "attack": "Attacca",
+      "flee": "Fuggi",
+      "useItem": "Usa Oggetto",
+      "castSpell": "Lancia Incantesimo",
+      "round": "Round {round}",
+      "victory": "Vittoria!",
+      "defeat": "Sconfitta...",
+      "youAttack": "Attacchi {enemy} per {damage} danni!",
+      "enemyAttacks": "{enemy} ti attacca per {damage} danni!",
+      "critical": "Colpo Critico!",
+      "miss": "Mancato!"
+    },
+    "check": {
+      "rolling": "Tiri {ability}...",
+      "success": "Successo! Hai ottenuto {total} contro difficoltà {dc}.",
+      "failure": "Fallimento. Hai ottenuto {total} contro difficoltà {dc}."
+    }
+  },
+  "donate": {
+    "title": "Supporta il Progetto",
+    "subtitle": "Aiutaci a espandere le Cronache dell'Abisso",
+    "description": "Il tuo supporto ci permette di aggiungere nuove sezioni, artwork e funzionalità.",
+    "tiers": {
+      "supporter": {
+        "name": "Sostenitore",
+        "price": "€5",
+        "perks": ["Badge esclusivo nel profilo", "Accesso anticipato agli aggiornamenti"]
+      },
+      "champion": {
+        "name": "Campione",
+        "price": "€15",
+        "perks": ["Tutto da Sostenitore", "Contenuti esclusivi", "Nome nei credits"]
+      },
+      "legend": {
+        "name": "Leggenda",
+        "price": "€50",
+        "perks": ["Tutto da Campione", "Influenza sulla storia", "Chat con gli autori"]
+      }
+    },
+    "thankYou": "Grazie per il tuo supporto!"
+  }
+}

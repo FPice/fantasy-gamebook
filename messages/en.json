@@ -1,0 +1,148 @@
+{
+  "common": {
+    "appName": "Chronicles of the Abyss",
+    "tagline": "An adventure in darkness awaits you",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "back": "Back",
+    "continue": "Continue",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "confirm": "Confirm",
+    "close": "Close",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "nav": {
+    "home": "Home",
+    "play": "Play",
+    "profile": "Profile",
+    "donate": "Support",
+    "signIn": "Sign In",
+    "signOut": "Sign Out"
+  },
+  "home": {
+    "heroTitle": "Chronicles of the Abyss",
+    "heroSubtitle": "An epic fantasy gamebook",
+    "heroDescription": "Set forth into the Abyss, a realm of darkness and wonder. Your choices shape destiny.",
+    "startAdventure": "Start Adventure",
+    "continueAdventure": "Continue Adventure",
+    "features": {
+      "choices": "Meaningful Choices",
+      "choicesDesc": "Every decision carries real and lasting consequences.",
+      "combat": "Tactical Combat",
+      "combatDesc": "Dice-based combat system with deep character stats.",
+      "story": "Branching Story",
+      "storyDesc": "Hundreds of narrative sections for a unique experience."
+    }
+  },
+  "auth": {
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out",
+    "email": "Email",
+    "password": "Password",
+    "username": "Username",
+    "forgotPassword": "Forgot password?",
+    "noAccount": "Don't have an account?",
+    "alreadyHaveAccount": "Already have an account?",
+    "signInWithGoogle": "Sign in with Google",
+    "emailSent": "Confirmation email sent. Check your inbox.",
+    "invalidCredentials": "Invalid credentials. Please try again.",
+    "errors": {
+      "emailRequired": "Email is required",
+      "passwordRequired": "Password is required",
+      "usernameRequired": "Username is required",
+      "passwordMinLength": "Password must be at least 8 characters"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "level": "Level",
+    "class": "Class",
+    "experience": "Experience",
+    "totalPlaytime": "Total playtime",
+    "achievements": "Achievements",
+    "noAchievements": "No achievements unlocked yet.",
+    "characters": "Your Characters",
+    "createCharacter": "Create Character",
+    "saves": "Saved Games",
+    "noSaves": "No saved games.",
+    "donorBadge": "Supporter",
+    "stats": {
+      "strength": "Strength",
+      "dexterity": "Dexterity",
+      "constitution": "Constitution",
+      "intelligence": "Intelligence",
+      "wisdom": "Wisdom",
+      "charisma": "Charisma"
+    },
+    "classes": {
+      "warrior": "Warrior",
+      "mage": "Mage",
+      "rogue": "Rogue",
+      "cleric": "Cleric",
+      "ranger": "Ranger"
+    }
+  },
+  "game": {
+    "newGame": "New Game",
+    "loadGame": "Load Game",
+    "saveGame": "Save Game",
+    "saveSlot": "Slot {slot}",
+    "emptySlot": "Empty slot",
+    "confirmOverwrite": "Do you want to overwrite this save?",
+    "chooseAction": "What do you do?",
+    "inventory": "Inventory",
+    "equipment": "Equipment",
+    "skills": "Skills",
+    "stats": "Statistics",
+    "gold": "Gold",
+    "hp": "HP",
+    "mp": "MP",
+    "combat": {
+      "title": "Combat",
+      "attack": "Attack",
+      "flee": "Flee",
+      "useItem": "Use Item",
+      "castSpell": "Cast Spell",
+      "round": "Round {round}",
+      "victory": "Victory!",
+      "defeat": "Defeat...",
+      "youAttack": "You attack {enemy} for {damage} damage!",
+      "enemyAttacks": "{enemy} attacks you for {damage} damage!",
+      "critical": "Critical Hit!",
+      "miss": "Miss!"
+    },
+    "check": {
+      "rolling": "Rolling {ability}...",
+      "success": "Success! You rolled {total} against difficulty {dc}.",
+      "failure": "Failure. You rolled {total} against difficulty {dc}."
+    }
+  },
+  "donate": {
+    "title": "Support the Project",
+    "subtitle": "Help us expand Chronicles of the Abyss",
+    "description": "Your support allows us to add new sections, artwork, and features.",
+    "tiers": {
+      "supporter": {
+        "name": "Supporter",
+        "price": "€5",
+        "perks": ["Exclusive profile badge", "Early access to updates"]
+      },
+      "champion": {
+        "name": "Champion",
+        "price": "€15",
+        "perks": ["Everything from Supporter", "Exclusive content", "Name in credits"]
+      },
+      "legend": {
+        "name": "Legend",
+        "price": "€50",
+        "perks": ["Everything from Champion", "Influence on the story", "Chat with authors"]
+      }
+    },
+    "thankYou": "Thank you for your support!"
+  }
+}
