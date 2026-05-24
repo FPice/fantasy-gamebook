@@ -84,11 +84,41 @@ const config: Config = {
           "0%, 100%": { opacity: "1" },
           "50%": { opacity: "0.5" },
         },
+        "dice-spin": {
+          "0%": { transform: "rotate(0deg) scale(1)" },
+          "40%": { transform: "rotate(200deg) scale(1.3)" },
+          "100%": { transform: "rotate(360deg) scale(1)" },
+        },
+        "loot-flip": {
+          "0%": { transform: "rotateY(0deg)" },
+          "50%": { transform: "rotateY(90deg)" },
+          "100%": { transform: "rotateY(0deg)" },
+        },
+        "slide-up": {
+          "0%": { opacity: "0", transform: "translateY(16px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+        "choice-appear": {
+          "0%": { opacity: "0", transform: "translateX(-8px)" },
+          "100%": { opacity: "1", transform: "translateX(0)" },
+        },
+        "typewriter-blink": {
+          "0%, 100%": { opacity: "1" },
+          "50%": { opacity: "0" },
+        },
+        "hp-bar": {
+          "0%": { width: "100%" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "abyss-pulse": "abyss-pulse 3s ease-in-out infinite",
+        "dice-spin": "dice-spin 0.5s ease-in-out",
+        "loot-flip": "loot-flip 0.6s ease-in-out",
+        "slide-up": "slide-up 0.3s ease-out",
+        "choice-appear": "choice-appear 0.25s ease-out forwards",
+        "typewriter-blink": "typewriter-blink 0.8s ease-in-out infinite",
       },
     },
   },

@@ -102,6 +102,12 @@
     "gold": "Gold",
     "hp": "HP",
     "mp": "MP",
+    "typeToSkip": "Tap to skip",
+    "attack": "Attack",
+    "defense": "Defense",
+    "hpLabel": "Hit Points",
+    "openInventory": "Inventory",
+    "emptySlotLabel": "Empty",
     "combat": {
       "title": "Combat",
       "attack": "Attack",
@@ -114,12 +120,65 @@
       "youAttack": "You attack {enemy} for {damage} damage!",
       "enemyAttacks": "{enemy} attacks you for {damage} damage!",
       "critical": "Critical Hit!",
-      "miss": "Miss!"
+      "miss": "Miss!",
+      "diceRolling": "Dice are rolling...",
+      "combatVictory": "You defeated {enemy}!",
+      "combatDefeat": "You were defeated by {enemy}...",
+      "hpLost": "HP lost",
+      "goldGained": "Gold gained",
+      "proceed": "Continue",
+      "startCombat": "Start Combat",
+      "yourRoll": "Your roll",
+      "enemyRoll": "Enemy roll",
+      "turn": "Turn {n}",
+      "critical_hit": "CRITICAL!",
+      "dodge": "Dodged!"
     },
     "check": {
       "rolling": "Rolling {ability}...",
       "success": "Success! You rolled {total} against difficulty {dc}.",
       "failure": "Failure. You rolled {total} against difficulty {dc}."
+    },
+    "slot": {
+      "arma": "Weapon",
+      "testa": "Head",
+      "corpo": "Body",
+      "gambe": "Legs",
+      "anello": "Ring",
+      "amuleto": "Amulet"
+    },
+    "rarity": {
+      "comune": "Common",
+      "non_comune": "Uncommon",
+      "raro": "Rare",
+      "leggendario": "Legendary"
+    },
+    "loot": {
+      "found": "You found:",
+      "equip": "Equip",
+      "keep": "Add to Inventory",
+      "discard": "Discard",
+      "bonus": "Bonus",
+      "effect": "Effect",
+      "setBonus": "Set Bonus",
+      "replaces": "Replaces: {item}"
+    },
+    "end": {
+      "victory": "Victory!",
+      "defeat": "Fallen into the Abyss",
+      "itemsFound": "Items found",
+      "choicesMade": "Choices made",
+      "goldEarned": "Gold accumulated",
+      "restart": "Restart",
+      "backToLobby": "Back to Menu",
+      "journey": "Your journey"
+    },
+    "nodeType": {
+      "storia": "Story",
+      "combattimento": "Combat",
+      "tesoro": "Treasure",
+      "morte": "End",
+      "vittoria": "Victory"
     }
   },
   "donate": {

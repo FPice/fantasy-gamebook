@@ -102,6 +102,12 @@
     "gold": "Oro",
     "hp": "PF",
     "mp": "PM",
+    "typeToSkip": "Tocca per saltare",
+    "attack": "Attacco",
+    "defense": "Difesa",
+    "hpLabel": "Punti Vita",
+    "openInventory": "Inventario",
+    "emptySlotLabel": "Vuoto",
     "combat": {
       "title": "Combattimento",
       "attack": "Attacca",
@@ -114,12 +120,65 @@
       "youAttack": "Attacchi {enemy} per {damage} danni!",
       "enemyAttacks": "{enemy} ti attacca per {damage} danni!",
       "critical": "Colpo Critico!",
-      "miss": "Mancato!"
+      "miss": "Mancato!",
+      "diceRolling": "I dadi rotolano...",
+      "combatVictory": "Hai sconfitto {enemy}!",
+      "combatDefeat": "Sei stato sconfitto da {enemy}...",
+      "hpLost": "HP persi",
+      "goldGained": "Oro guadagnato",
+      "proceed": "Continua",
+      "startCombat": "Inizia il Combattimento",
+      "yourRoll": "Il tuo tiro",
+      "enemyRoll": "Tiro nemico",
+      "turn": "Turno {n}",
+      "critical_hit": "CRITICO!",
+      "dodge": "Schivato!"
     },
     "check": {
       "rolling": "Tiri {ability}...",
       "success": "Successo! Hai ottenuto {total} contro difficoltà {dc}.",
       "failure": "Fallimento. Hai ottenuto {total} contro difficoltà {dc}."
+    },
+    "slot": {
+      "arma": "Arma",
+      "testa": "Testa",
+      "corpo": "Corpo",
+      "gambe": "Gambe",
+      "anello": "Anello",
+      "amuleto": "Amuleto"
+    },
+    "rarity": {
+      "comune": "Comune",
+      "non_comune": "Non Comune",
+      "raro": "Raro",
+      "leggendario": "Leggendario"
+    },
+    "loot": {
+      "found": "Hai trovato:",
+      "equip": "Equipaggia",
+      "keep": "Metti in Inventario",
+      "discard": "Scarta",
+      "bonus": "Bonus",
+      "effect": "Effetto",
+      "setBonus": "Bonus Set",
+      "replaces": "Sostituisce: {item}"
+    },
+    "end": {
+      "victory": "Vittoria!",
+      "defeat": "Caduto nell'Abisso",
+      "itemsFound": "Oggetti trovati",
+      "choicesMade": "Scelte fatte",
+      "goldEarned": "Oro accumulato",
+      "restart": "Ricomincia",
+      "backToLobby": "Torna al Menu",
+      "journey": "Il tuo viaggio"
+    },
+    "nodeType": {
+      "storia": "Racconto",
+      "combattimento": "Combattimento",
+      "tesoro": "Tesoro",
+      "morte": "Fine",
+      "vittoria": "Vittoria"
     }
   },
   "donate": {

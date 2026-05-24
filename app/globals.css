@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -36,6 +38,12 @@
   }
 }
 
+@layer base {
+  :root {
+    --font-fantasy: 'Cinzel', Georgia, serif;
+  }
+}
+
 @layer utilities {
   .text-gradient-abyss {
     @apply bg-gradient-to-r from-abyss-300 via-abyss-400 to-abyss-500 bg-clip-text text-transparent;
@@ -43,4 +51,19 @@
   .bg-abyss-glow {
     box-shadow: 0 0 40px theme("colors.abyss.500 / 0.3");
   }
+  .font-fantasy {
+    font-family: var(--font-fantasy);
+  }
+  .rarity-comune    { @apply text-gray-300; }
+  .rarity-non_comune { @apply text-green-400; }
+  .rarity-raro      { @apply text-blue-400; }
+  .rarity-leggendario { @apply text-yellow-400; }
+  .border-rarity-comune    { @apply border-gray-600; }
+  .border-rarity-non_comune { @apply border-green-700; }
+  .border-rarity-raro      { @apply border-blue-700; }
+  .border-rarity-leggendario { @apply border-yellow-600; }
+  .bg-rarity-comune    { @apply bg-gray-900/40; }
+  .bg-rarity-non_comune { @apply bg-green-900/30; }
+  .bg-rarity-raro      { @apply bg-blue-900/30; }
+  .bg-rarity-leggendario { @apply bg-yellow-900/20; }
 }
