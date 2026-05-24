@@ -1,9 +1,12 @@
 import { useTranslations } from "next-intl";
+import { setRequestLocale } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 
 const TIER_KEYS = ["supporter", "champion", "legend"] as const;
 
-export default function DonatePage() {
+export default function DonatePage({ params: { locale } }: { params: { locale: string } }) {
+  setRequestLocale(locale);
+
   const t = useTranslations("donate");
 
   return (

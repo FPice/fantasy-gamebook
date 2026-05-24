@@ -16,8 +16,6 @@ export function Navigation({ locale }: NavigationProps) {
   const t = useTranslations("nav");
   const pathname = usePathname();
   const router = useRouter();
-  const supabase = createClient();
-
   const links = [
     { href: `/${locale}`, label: t("home") },
     { href: `/${locale}/game`, label: t("play") },
@@ -26,6 +24,7 @@ export function Navigation({ locale }: NavigationProps) {
   ];
 
   async function handleSignOut() {
+    const supabase = createClient();
     await supabase.auth.signOut();
     router.push(`/${locale}/auth`);
     router.refresh();

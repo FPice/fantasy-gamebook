@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import { useTranslations } from "next-intl";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { redirect } from "next/navigation";

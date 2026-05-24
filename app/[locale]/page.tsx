@@ -1,8 +1,11 @@
 import { useTranslations } from "next-intl";
+import { setRequestLocale } from "next-intl/server";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export default function HomePage({ params: { locale } }: { params: { locale: string } }) {
+  setRequestLocale(locale);
+
   const t = useTranslations("home");
   const tNav = useTranslations("nav");
 

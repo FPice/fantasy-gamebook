@@ -17,7 +17,6 @@ export default function AuthPage({
 }) {
   const t = useTranslations("auth");
   const router = useRouter();
-  const supabase = createClient();
 
   const [mode, setMode] = useState<AuthMode>("signIn");
   const [email, setEmail] = useState("");
@@ -33,6 +32,7 @@ export default function AuthPage({
     setMessage(null);
     setIsLoading(true);
 
+    const supabase = createClient();
     try {
       if (mode === "signIn") {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
