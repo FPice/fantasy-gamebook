@@ -1,6 +1,7 @@
 export const dynamic = "force-dynamic";
 
 import { useTranslations } from "next-intl";
+import { setRequestLocale } from "next-intl/server";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { redirect } from "next/navigation";
 import type { Locale } from "@/i18n";
@@ -10,6 +11,8 @@ export default async function ProfilePage({
 }: {
   params: { locale: Locale };
 }) {
+  setRequestLocale(locale);
+
   const supabase = await createServerSupabaseClient();
   const { data: { session } } = await supabase.auth.getSession();
 
