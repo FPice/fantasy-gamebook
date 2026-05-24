@@ -181,7 +181,7 @@ export function calcolaStatPersonaggio(personaggio: Personaggio): StatCalcolate 
 
   // Applica i bonus set in base al numero di pezzi
   const set_attivi: StatCalcolate["set_attivi"] = [];
-  for (const [nome_set, pezzi] of conteggio.entries()) {
+  Array.from(conteggio.entries()).forEach(([nome_set, pezzi]) => {
     const set = LEGENDARY_SETS[nome_set];
     const bonus_applicati: BonusSetLivello[] = [];
 
@@ -200,7 +200,7 @@ export function calcolaStatPersonaggio(personaggio: Personaggio): StatCalcolate 
     }
 
     set_attivi.push({ nome_set, pezzi, bonus_applicati });
-  }
+  });
 
   // Gli HP correnti non possono superare i nuovi HP massimi
   stats.punti_vita_correnti = Math.min(stats.punti_vita_correnti, stats.punti_vita_max);
