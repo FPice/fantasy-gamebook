@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { usePathname } from "next/navigation";
 import { LanguageSwitcher } from "./LanguageSwitcher";
-import { createClient } from "@/lib/supabase";
+import { createClient } from "@/lib/supabase-client";
 import { useRouter } from "next/navigation";
 import type { Locale } from "@/i18n";
 

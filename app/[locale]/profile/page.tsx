@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { createServerSupabaseClient } from "@/lib/supabase";
+import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { redirect } from "next/navigation";
 import type { Locale } from "@/i18n";
 
