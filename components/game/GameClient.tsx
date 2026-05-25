@@ -16,7 +16,12 @@ export default function GameClient({ slot }: { slot: string }) {
   useEffect(() => {
     if (!mounted) return
     const saved = localStorage.getItem('cda_save_' + slot)
-    if (saved) setNodoId(JSON.parse(saved).nodoId)
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved)
+        if (parsed.nodoId) setNodoId(parsed.nodoId)
+      } catch(e) {}
+    }
   }, [mounted, slot])
 
   useEffect(() => {
