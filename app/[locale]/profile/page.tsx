@@ -1,17 +1,18 @@
 export const dynamic = "force-dynamic";
 
-import { useTranslations } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations } from "next-intl/server";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { redirect } from "next/navigation";
 import type { Locale } from "@/i18n";
+
+type Translations = Awaited<ReturnType<typeof getTranslations>>;
 
 export default async function ProfilePage({
   params: { locale },
 }: {
   params: { locale: Locale };
 }) {
-  setRequestLocale(locale);
+  const t = await getTranslations("profile");
 
   const supabase = await createServerSupabaseClient();
   const { data: { session } } = await supabase.auth.getSession();
@@ -24,12 +25,10 @@ export default async function ProfilePage({
     .eq("id", session.user.id)
     .single();
 
-  return <ProfileView profile={profile} />;
+  return <ProfileView profile={profile} t={t} />;
 }
 
-function ProfileView({ profile }: { profile: unknown }) {
-  const t = useTranslations("profile");
-
+function ProfileView({ profile, t }: { profile: unknown; t: Translations }) {
   return (
     <div className="container max-w-3xl py-12">
       <h1 className="text-3xl font-bold mb-8 text-gradient-abyss">{t("title")}</h1>
