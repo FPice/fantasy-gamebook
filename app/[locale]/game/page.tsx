@@ -1,50 +1,55 @@
 export const dynamic = "force-dynamic";
 
-import { useTranslations } from "next-intl";
 import { createServerSupabaseClient } from "@/lib/supabase-server";
 import { redirect } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import type { Locale } from "@/i18n";
 
 export default async function GamePage({
-  params: { locale },
+  params,
 }: {
   params: { locale: Locale };
 }) {
+  const { locale } = params;
+
   const supabase = await createServerSupabaseClient();
-  const { data: { session } } = await supabase.auth.getSession();
+  const {
+    data: { session },
+  } = await supabase.auth.getSession();
 
   if (!session) redirect(`/${locale}/auth`);
 
-  return <GameLobby locale={locale} userId={session.user.id} />;
-}
-
-function GameLobby({ locale, userId }: { locale: Locale; userId: string }) {
-  const t = useTranslations("game");
+  const isItalian = locale !== "en";
 
   return (
-    <div className="container max-w-4xl py-12">
-      <h1 className="text-3xl font-bold mb-8 text-gradient-abyss">
-        {t("newGame")} / {t("loadGame")}
+    <div className="container max-w-4xl py-12 px-4">
+      <h1 className="text-3xl font-bold mb-2">
+        {isItalian ? "Scegli uno slot di salvataggio" : "Choose a save slot"}
       </h1>
+      <p className="text-muted-foreground mb-8">
+        {isItalian
+          ? "Seleziona uno slot per iniziare o continuare la tua avventura."
+          : "Select a slot to start or continue your adventure."}
+      </p>
 
       <div className="grid md:grid-cols-3 gap-4">
         {([1, 2, 3] as const).map((slot) => (
           <div
             key={slot}
-            className="border border-abyss-800 rounded-lg p-6 flex flex-col gap-4"
+            className="border border-border rounded-lg p-6 flex flex-col gap-4"
           >
-            <p className="text-muted-foreground text-sm">
-              {t("saveSlot", { slot })}
-            </p>
-            <p className="text-sm">{t("emptySlot")}</p>
-            <Button
-              asChild
-              className="mt-auto bg-abyss-700 hover:bg-abyss-600"
+            <div className="text-sm text-muted-foreground">
+              {isItalian ? `Slot ${slot}` : `Slot ${slot}`}
+            </div>
+            <div className="text-sm flex-1">
+              {isItalian ? "Slot vuoto" : "Empty slot"}
+            </div>
+            <Link
+              href={`/${locale}/game/${slot}`}
+              className="block w-full text-center px-4 py-2 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-colors text-sm font-medium"
             >
-              <Link href={`/${locale}/game/${slot}`}>{t("newGame")}</Link>
-            </Button>
+              {isItalian ? "Nuova Partita" : "New Game"}
+            </Link>
           </div>
         ))}
       </div>
