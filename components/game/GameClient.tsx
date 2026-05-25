@@ -36,19 +36,19 @@ export default function GameClient({ slot }: { slot: string }) {
           <span className="text-sm text-red-400">HP: {hp}</span>
         </div>
 
-        <h1 className="text-2xl font-bold mb-4 text-amber-400">{nodo.titolo}</h1>
-
-        <p className="text-gray-200 leading-relaxed mb-8 text-base">{nodo.testo}</p>
+        <p className="text-gray-200 leading-relaxed mb-8 text-base">
+          {locale === 'it' ? nodo.testo_it : nodo.testo_en}
+        </p>
 
         <div className="flex flex-col gap-3">
-          {nodo.scelte.map((scelta) => (
+          {nodo.scelte.map((scelta, idx) => (
             <button
-              key={scelta.id}
-              onClick={() => setNodoId(scelta.nodoDestinazione)}
+              key={scelta.proseguiA}
+              onClick={() => setNodoId(scelta.proseguiA)}
               className="text-left px-5 py-3 rounded border border-gray-700 bg-gray-900 hover:bg-gray-800 hover:border-amber-600 transition-colors text-gray-100"
             >
-              <span className="text-amber-500 font-bold mr-2">{scelta.id.toUpperCase()}.</span>
-              {scelta.testo}
+              <span className="text-amber-500 font-bold mr-2">{String.fromCharCode(65 + idx)}.</span>
+              {locale === 'it' ? scelta.testo_it : scelta.testo_en}
             </button>
           ))}
         </div>
